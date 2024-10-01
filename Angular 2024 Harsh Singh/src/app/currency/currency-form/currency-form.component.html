@@ -1,0 +1,25 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Add </h2>
+  <form [formGroup]="currencyForm">
+    <div class="mb-3">
+      <label for="currencyCode" class="form-label">Currency Code</label>
+      <input id="currencyCode" formControlName="currencyCode" class="form-control" required>
+      <div *ngIf="currencyForm.get('currencyCode')!.invalid && (currencyForm.get('currencyCode')!.touched || currencyForm.get('currencyCode')!.dirty)" class="text-danger">
+        Curreny Code is Required
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label for="currencyName" class="form-label">Currency Name</label>
+      <input id="currencyName" formControlName="currencyName" class="form-control" required>
+      <div *ngIf="currencyForm.get('currencyName')!.invalid && (currencyForm.get('currencyName')!.touched || currencyForm.get('currencyName')!.dirty)" class="text-danger">
+        Curreny Name is Required
+      </div>
+    </div>
+    
+    <button type="submit" class="btn btn-primary" (click)="addCurrency()">
+    Add Currency
+    </button>
+    <button type="button" class="btn btn-warning" (click)="updateCurrency()">Edit Currency</button>
+  </form>
+</div>

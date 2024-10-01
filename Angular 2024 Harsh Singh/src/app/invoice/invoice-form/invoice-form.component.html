@@ -1,0 +1,84 @@
+<!-- <div>
+  <h2>Add Invoice</h2>
+  <form [formGroup]="invoiceForm" >
+    <label for="invoiceNumber">Invioce Number</label>
+    <input id="invoiceNumber" formControlName="invoiceNumber">
+    <label for="currencyId">Currency Id</label>
+    <input id="currencyId" formControlName="currencyId">
+    <label for="vendorId">vendorId</label>
+    <input id="vendorId" formControlName="vendorId">
+    <label for="invoiceNumber">Invioce Amount</label>
+    <input id="invoiceNumber" formControlName="invoiceAmount">
+    <label for="invoiceReceivedDate">Invioce Received Date</label>
+    <input id="invoiceReceivedDate" type="date" formControlName="invoiceReceivedDate">
+    <label for="invoiceDueDate">Invioce Due Date</label>
+    <input id="invoiceDueDate" type="date" formControlName="invoiceDueDate">
+  
+    <button (click)="addInvoice()">Add Invoice</button>
+    <button (click)="updateInvoice()" >Edit Invoice</button>
+  </form>
+</div> -->
+
+
+
+
+ <div class="container mt-4">
+  <h2>Add Invoice</h2>
+  <form [formGroup]="invoiceForm" >
+    <div class="mb-3">
+      <label for="invoiceNumber" class="form-label">Invoice Number</label>
+      <input id="invoiceNumber" class="form-control" formControlName="invoiceNumber">
+      <div *ngIf="invoiceForm.get('invoiceNumber')!.invalid && (invoiceForm.get('invoiceNumber')!.touched || invoiceForm.get('invoiceNumber')!.dirty)" class="text-danger">
+        Invoice Number is required.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="currencyId">Currency ID</label>
+      <select id="currencyId" formControlName="currencyId" class="form-control" required>
+        <option value="" disabled>Select Currency</option>
+        <option *ngFor="let currency of currencies" [value]="currency.currencyId">{{ currency.currencyId }}</option>
+      </select>
+    </div>
+
+
+    <div class="mb-3">
+      <label for="vendorId">Vendor ID</label>
+      <select id="vendorId" formControlName="vendorId" class="form-control" required>
+        <option value="" disabled>Select Venor</option>
+        <option *ngFor="let vendor of vendors" [value]="vendor.vendorId">{{ vendor.vendorId }}</option>
+      </select>
+ 
+    </div>
+    
+    <div class="mb-3">
+      <label for="invoiceAmount" class="form-label">Invoice Amount</label>
+      <input id="invoiceAmount" class="form-control" formControlName="invoiceAmount">
+      <div *ngIf="invoiceForm.get('invoiceAmount')!.invalid && (invoiceForm.get('invoiceAmount')!.touched || invoiceForm.get('invoiceAmount')!.dirty)" class="text-danger">
+         Invoice Amount is required.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="invoiceReceivedDate" class="form-label">Invoice Received Date</label>
+      <input id="invoiceReceivedDate" type="date" class="form-control" formControlName="invoiceReceivedDate">
+      <div *ngIf="invoiceForm.get('invoiceReceivedDate')!.invalid && (invoiceForm.get('invoiceReceivedDate')!.touched || invoiceForm.get('invoiceReceivedDate')!.dirty)" class="text-danger">
+        Invoice Received Date is required.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="invoiceDueDate" class="form-label">Invoice Due Date</label>
+      <input id="invoiceDueDate" type="date" class="form-control" formControlName="invoiceDueDate">
+      <div *ngIf="invoiceForm.get('invoiceDueDate')!.invalid && (invoiceForm.get('invoiceDueDate')!.touched || invoiceForm.get('invoiceDueDate')!.dirty)" class="text-danger">
+        Invoice Due date  is required.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" (click)="addInvoice()">Add Invoice</button>
+    <button type="button" class="btn btn-secondary" (click)="updateInvoice()" *ngIf="isEditMode">Edit Invoice</button>
+  </form>
+</div>
+ 
+
+

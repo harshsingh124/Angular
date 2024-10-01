@@ -1,0 +1,38 @@
+<div class="container mt-4">
+  <h2 class="mb-4">{{ isEditMode ? 'Edit Vendor' : 'Add Vendor' }}</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Invoice Id</th>
+        <th scope="col">Invoice Number</th>
+        <th scope="col">Currency ID</th>
+        <th scope="col">Vendor ID</th>
+        <th scope="col">Invoice Amount</th>
+        <th scope="col">Invoice Received Date</th>
+        <th scope="col">Invoice Due Date</th>
+        <th scope="col">Is Active</th>
+        <th scope="col">Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let i of invoices">
+        <td>{{ i.invoiceId }}</td>
+        <td>{{ i.invoiceNumber }}</td>
+        <td>{{ i.currencyId }}</td>
+        <td>{{ i.vendorId }}</td>
+        <td>{{ i.invoiceAmount | currency }}</td>
+        <td>{{ i.invoiceReceivedDate | date }}</td>
+        <td>{{ i.invoiceDueDate | date }}</td>
+        <td>{{ i.isActive ? 'Yes' : 'No' }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm m-1" (click)="editInvoice(i.invoiceNumber)">Edit</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteInvoice(i.invoiceId)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="text-end">
+    <button class="btn btn-secondary m-1" (click)="downloadCSV()">Download CSV</button>
+    <button class="btn btn-primary" routerLink="invoiceform">Add New Invoice</button>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Currency List</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Currency ID</th>
+        <th scope="col">Currency Name</th>
+        <th scope="col">Currency Code</th>
+        <th scope="col">Is Active</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of currencies">
+        <td>{{ c.currencyId }}</td>
+        <td>{{ c.currencyName }}</td>
+        <td>{{ c.currencyCode }}</td>
+        <td>{{ c.isActive ? 'Yes' : 'No' }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm m-1" (click)="editCurrency(c.currencyCode)">Edit</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteCurrency(c.currencyCode)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="text-end">
+    <button class="btn btn-secondary m-1" (click)="downloadCSV()">Download CSV</button>
+    <button class="btn btn-primary" routerLink="currenciesform">Add New Currency</button>
+  </div>
+</div>
